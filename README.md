@@ -7,21 +7,34 @@ Start-Process "msedge.exe" "--kiosk https://c.tenor.com/x8v1oNUOmg4AAAAd/tenor.g
 
 
 $bufferSize = $Host.UI.RawUI.BufferSize
+
 $bufferSize.Width = 125
+
 $bufferSize.Height = 20
+
 $Host.UI.RawUI.BufferSize = $bufferSize
 
 $windowSize = $Host.UI.RawUI.WindowSize
+
 $windowSize.Width = 125
+
 $windowSize.Height = 20
+
 $Host.UI.RawUI.WindowSize = $windowSize
 
-$filePath = "ruta\al\archivo.txt"
-$lines = Get-Content $filePath
+
+$lootDirectory = Join-Path -Path $env:TEMP -ChildPath "$env:USERNAME-LOOT-2024"
+
+$filePath = Join-Path -Path $lootDirectory -ChildPath "computerdata.txt"
+
+$lines = Get-Content -Path $filePath
 
 foreach ($line in $lines) {
+
     Write-Host $line
+    
     Start-Sleep -Milliseconds 500 # Ajusta este valor para controlar la velocidad del "scroll"
+    
 }
 
 # Esperar a que el usuario presione una tecla antes de cerrar la consola
